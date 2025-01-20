@@ -1,0 +1,50 @@
+(tf_gpu) [kvj@localhost ethereum-exchanges]$ python data.py
+CSV Structure:
+Columns in the dataset: ['token_address', 'from_address', 'to_address', 'value', 'transaction_hash', 'log_index', 'block_number']
+
+First few rows of the dataset:
+                                token_address                                from_address  ... log_index block_number
+0  0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac  0x78903c52de3923d203881f1b766160cba5a37f59  ...        29      6525300
+1  0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac  0x78903c52de3923d203881f1b766160cba5a37f59  ...        33      6525300
+2  0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac  0x78903c52de3923d203881f1b766160cba5a37f59  ...        36      6525300
+3  0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac  0x78903c52de3923d203881f1b766160cba5a37f59  ...        37      6525300
+4  0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac  0x78903c52de3923d203881f1b766160cba5a37f59  ...        38      6525300
+
+[5 rows x 7 columns]
+
+Graph Structure:
+Number of nodes: 6083422
+Number of edges: 18711039
+Node attributes available.
+Sample node attributes: ('0x78903c52de3923d203881f1b766160cba5a37f59', {})
+Edge attributes available.
+Sample edge attributes: ('0x78903c52de3923d203881f1b766160cba5a37f59', '0xc20d6d7d2e7cde1cabc7f20c553fe93dada380f3', {'token_address': '0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac', 'weight': '209000000', 'transaction_hash': '0x430d2a02f678d28bb6e441cd383a6ddd02f30c05378d64fb4e34a17cf0162735', 'log_index': 29, 'block_number': 6525300, 'timestamp': Timestamp('2024-02-07 20:45:00')})
+
+Feature Analysis:
+Edge weights are available.
+Weight statistics:
+count           38901039
+unique          13867521
+top       88888800000000
+freq             1244424
+Name: weight, dtype: object
+
+
+Data Size and Complexity:
+Number of unique nodes: 6083422
+Number of edges: 38901039
+Average degree: 12.79
+
+Analyzing Transfer Distribution:
+
+Top Major Hubs:
+Address: 0xc12d1c73..., Connections: 1245832
+Address: 0xe5ccfca5..., Connections: 398408
+Address: 0x00cfbbaf..., Connections: 360636
+Address: 0xaaaaa798..., Connections: 352727
+Address: 0x8a91c9a1..., Connections: 348602
+Address: 0x3f5ce5fb..., Connections: 320936
+Address: 0x0b795e58..., Connections: 159709
+Address: 0x526af336..., Connections: 130536
+Address: 0x56428636..., Connections: 109581
+Address: 0xd551234a..., Connections: 108979
