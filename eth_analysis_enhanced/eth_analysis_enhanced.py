@@ -21,7 +21,7 @@ except ImportError:
     TENSORBOARD_AVAILABLE = False
     logging.warning("Tensorboard not available. Some logging features will be disabled.")
 
-class EthereumExchangeDetectorAcademic(EnhancedEthereumDetector):
+class EthereumExchangeDetectorEnhanced(EnhancedEthereumDetector):
     def __init__(self, file_path, n_runs=10, n_folds=5, use_wandb=False):
         super().__init__(file_path)
         self.n_runs = n_runs
@@ -37,8 +37,8 @@ class EthereumExchangeDetectorAcademic(EnhancedEthereumDetector):
         self.statistical_results = {}
         
         # Create necessary directories
-        os.makedirs('figures/academic', exist_ok=True)
-        os.makedirs('results/academic', exist_ok=True)
+        os.makedirs('figures/Enhanced', exist_ok=True)
+        os.makedirs('results/Enhanced', exist_ok=True)
         
         # Initialize W&B only if explicitly enabled
         if self.use_wandb:
@@ -61,7 +61,7 @@ class EthereumExchangeDetectorAcademic(EnhancedEthereumDetector):
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s',
             handlers=[
-                logging.FileHandler('results/academic/academic_analysis.log'),
+                logging.FileHandler('results/Enhanced/Enhanced_analysis.log'),
                 logging.StreamHandler()
             ]
         )
@@ -178,7 +178,7 @@ class EthereumExchangeDetectorAcademic(EnhancedEthereumDetector):
         plt.legend()
         
         plt.tight_layout()
-        plt.savefig(f'figures/academic/{model_name}_optimization.png')
+        plt.savefig(f'figures/Enhanced/{model_name}_optimization.png')
         plt.close()
 
     def statistical_validation(self):
@@ -307,11 +307,11 @@ class EthereumExchangeDetectorAcademic(EnhancedEthereumDetector):
             )
             plt.title(f'Feature Importance - {model_name}')
             plt.tight_layout()
-            plt.savefig(f'figures/academic/shap_{model_name}.png')
+            plt.savefig(f'figures/Enhanced/shap_{model_name}.png')
             plt.close()
             
             wandb.log({f"shap_plot_{model_name}": 
-                      wandb.Image(f'figures/academic/shap_{model_name}.png')})
+                      wandb.Image(f'figures/Enhanced/shap_{model_name}.png')})
             
         except Exception as e:
             logging.error(f"Error in feature importance analysis: {str(e)}")
@@ -359,7 +359,7 @@ class EthereumExchangeDetectorAcademic(EnhancedEthereumDetector):
             plt.ylabel('Value')
         
         plt.tight_layout()
-        plt.savefig('figures/academic/network_metrics.png')
+        plt.savefig('figures/Enhanced/network_metrics.png')
         plt.close()
 
     def _analyze_token_flows(self):
@@ -411,12 +411,12 @@ class EthereumExchangeDetectorAcademic(EnhancedEthereumDetector):
             plt.ylabel('Value')
         
         plt.tight_layout()
-        plt.savefig('figures/academic/token_patterns.png')
+        plt.savefig('figures/Enhanced/token_patterns.png')
         plt.close()
         
         # Log to W&B
         wandb.log({
-            "token_patterns": wandb.Image('figures/academic/token_patterns.png')
+            "token_patterns": wandb.Image('figures/Enhanced/token_patterns.png')
         })
 
     def ablation_study(self):
@@ -472,11 +472,11 @@ class EthereumExchangeDetectorAcademic(EnhancedEthereumDetector):
             }
             
             # Save to file
-            torch.save(results, 'results/academic/experimental_results.pt')
-            wandb.save('results/academic/experimental_results.pt')
+            torch.save(results, 'results/Enhanced/experimental_results.pt')
+            wandb.save('results/Enhanced/experimental_results.pt')
             
             # Generate report
-            with open('results/academic/experimental_report.txt', 'w') as f:
+            with open('results/Enhanced/experimental_report.txt', 'w') as f:
                 f.write(f"Ethereum Exchange Detection Experiment Results\n{'='*50}\n")
                 for key, value in results.items():
                     f.write(f"\n{key}:\n{'-'*30}\n{value}\n")
