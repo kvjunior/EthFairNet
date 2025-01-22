@@ -14,7 +14,7 @@ import pandas as pd
 
 # Import our components
 from ethereum_detector import EnhancedEthereumDetector
-from eth_analysis_academic import EthereumExchangeDetectorAcademic
+from eth_analysis_enhanced import EthereumExchangeDetectorEnhanced
 from eth_robustness import EthereumRobustnessAnalysis
 from eth_ethical import EthereumEthicalAnalysis
 
@@ -27,7 +27,7 @@ def setup_experiment_directory():
     dirs = [
         base_dir / "models",
         base_dir / "results" / "base",
-        base_dir / "results" / "academic",
+        base_dir / "results" / "enhanced",
         base_dir / "results" / "robustness",
         base_dir / "results" / "ethical",
         base_dir / "figures" / "analysis",
@@ -181,9 +181,9 @@ def main():
             logger.info("Loading exchange labels...")
             exchange_addresses = load_exchange_labels(args.label_file)
             
-            # 2. Initialize detector with academic enhancements
+            # 2. Initialize detector with enhanced enhancements
             logger.info("Initializing enhanced detector...")
-            detector = EthereumExchangeDetectorAcademic(
+            detector = EthereumExchangeDetectorEnhanced(
                 args.data_file,  # Changed from df to data_file
                 n_runs=args.n_runs,
                 n_folds=args.n_folds,
